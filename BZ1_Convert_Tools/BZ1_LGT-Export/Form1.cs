@@ -78,9 +78,12 @@ namespace BZ1_LGT_Export
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (pictureBox1.Image != null)
             {
-                pictureBox1.Image.Save(saveFileDialog1.FileName);
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox1.Image.Save(saveFileDialog1.FileName);
+                }
             }
         }
 
