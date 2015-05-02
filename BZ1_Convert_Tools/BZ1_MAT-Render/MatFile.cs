@@ -8,13 +8,23 @@ namespace BZ1_MAT_Render
     class MatFile
     {
         public List<MatZone> zoneList;
-        public MatFile(System.IO.Stream fileStream)
+        public MatFile(System.IO.Stream fileStream, bool swapBytes = false)
         {
             zoneList = new List<MatZone>();
 
             byte[] buffer = new byte[64 * 64 * sizeof(UInt16)];
             while (fileStream.Read(buffer, 0, 64 * 64 * sizeof(UInt16)) > 0)
             {
+                if (swapBytes)
+                {
+                    for (int x = 0; x < buffer.Length; x += 2)
+                    {
+                        byte tmp = buffer[x];
+                        buffer[x] = buffer[x + 1];
+                        buffer[x + 1] = tmp;
+                    }
+                }
+
                 zoneList.Add(new MatZone(buffer));
                 buffer = new byte[64 * 64 * sizeof(UInt16)];
             }

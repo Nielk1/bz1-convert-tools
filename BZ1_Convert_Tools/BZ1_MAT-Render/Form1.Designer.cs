@@ -31,10 +31,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openIniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.openIniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -66,9 +66,17 @@
             this.openToolStripMenuItem.Text = "Open MAP";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
+            // openIniToolStripMenuItem
+            // 
+            this.openIniToolStripMenuItem.Name = "openIniToolStripMenuItem";
+            this.openIniToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openIniToolStripMenuItem.Text = "Open TRN";
+            this.openIniToolStripMenuItem.Click += new System.EventHandler(this.openIniToolStripMenuItem_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Multiselect = true;
             // 
             // pictureBox1
             // 
@@ -77,13 +85,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(150, 140);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            // 
-            // openIniToolStripMenuItem
-            // 
-            this.openIniToolStripMenuItem.Name = "openIniToolStripMenuItem";
-            this.openIniToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.openIniToolStripMenuItem.Text = "Open TRN";
-            this.openIniToolStripMenuItem.Click += new System.EventHandler(this.openIniToolStripMenuItem_Click);
             // 
             // openFileDialog2
             // 

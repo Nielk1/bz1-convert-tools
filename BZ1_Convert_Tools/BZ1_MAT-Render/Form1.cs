@@ -54,78 +54,84 @@ namespace BZ1_MAT_Render
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Stream fileStream = openFileDialog1.OpenFile();
-
-                MatFile mat = new MatFile(fileStream);
-
-                //int width = 32;
-                int width = 256;// 256;
-                int zoneNum = 1;
-
-                int subdivisions = 2;
-
-                foreach (MatZone zone in mat.zoneList)
+                foreach(string filenameIn in openFileDialog1.FileNames)
                 {
-                //    Bitmap bmp = new Bitmap(width * 64, width * 64, PixelFormat.Format16bppRgb565);
-                //    Graphics g = Graphics.FromImage(bmp);
-                //    for (int y = 0; y < 64; y++)
-                //    {
-                //        for (int x = 0; x < 64; x++)
-                //        {
-                //            int mix = zone.GetMix(x, y);
-                //            int baseT = zone.GetBase(x,y);
-                //            int nextT = zone.GetNext(x,y);
-                //            int var = zone.GetVariant(x, y);
-                //            Bitmap tileImage = renderTexture(width, mix, baseT, nextT, var);
-                //            g.DrawImage(tileImage, x * width, (64 - y - 1) * width);
-                //        }
-                //    }
-                //    string filename = openFileDialog1.FileName;
-                //    filename = Path.GetFileNameWithoutExtension(filename);
-                //    saveFileDialog1.FileName = filename + "_" + zoneNum + ".bmp";
-                //    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                //    {
-                //        bmp.Save(saveFileDialog1.FileName);
-                //    }
-                //    zoneNum++;
+                    //Stream fileStream = openFileDialog1.OpenFile();
+                    Stream fileStream = File.OpenRead(filenameIn);
 
-                    int subDiv = 1;
+                    //MatFile mat = new MatFile(fileStream, openFileDialog1.FileName.ToLowerInvariant().EndsWith(".bin"));
+                    MatFile mat = new MatFile(fileStream, filenameIn.ToLowerInvariant().EndsWith(".bin"));
 
-                    for (int yO = 0; yO < subdivisions; yO++)
+                    int width = 8;//256;
+                    int zoneNum = 1;
+
+                    int subdivisions = 1;//2;
+
+                    foreach (MatZone zone in mat.zoneList)
                     {
-                        for (int xO = 0; xO < subdivisions; xO++)
+                        //    Bitmap bmp = new Bitmap(width * 64, width * 64, PixelFormat.Format16bppRgb565);
+                        //    Graphics g = Graphics.FromImage(bmp);
+                        //    for (int y = 0; y < 64; y++)
+                        //    {
+                        //        for (int x = 0; x < 64; x++)
+                        //        {
+                        //            int mix = zone.GetMix(x, y);
+                        //            int baseT = zone.GetBase(x,y);
+                        //            int nextT = zone.GetNext(x,y);
+                        //            int var = zone.GetVariant(x, y);
+                        //            Bitmap tileImage = renderTexture(width, mix, baseT, nextT, var);
+                        //            g.DrawImage(tileImage, x * width, (64 - y - 1) * width);
+                        //        }
+                        //    }
+                        //    string filename = openFileDialog1.FileName;
+                        //    filename = Path.GetFileNameWithoutExtension(filename);
+                        //    saveFileDialog1.FileName = filename + "_" + zoneNum + ".bmp";
+                        //    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        //    {
+                        //        bmp.Save(saveFileDialog1.FileName);
+                        //    }
+                        //    zoneNum++;
+
+                        int subDiv = 1;
+
+                        for (int yO = 0; yO < subdivisions; yO++)
                         {
-                            Bitmap bmp = new Bitmap(width * 64 / subdivisions, width * 64 / subdivisions, PixelFormat.Format16bppRgb565);
-                            Graphics g = Graphics.FromImage(bmp);
-                            for (int yI = 0; yI < (64 / subdivisions); yI++)
+                            for (int xO = 0; xO < subdivisions; xO++)
                             {
-                                int y = yI + ((64 / subdivisions) * yO);
-                                for (int xI = 0; xI < (64 / subdivisions); xI++)
+                                Bitmap bmp = new Bitmap(width * 64 / subdivisions, width * 64 / subdivisions, PixelFormat.Format16bppRgb565);
+                                Graphics g = Graphics.FromImage(bmp);
+                                for (int yI = 0; yI < (64 / subdivisions); yI++)
                                 {
-                                    int x = xI + ((64 / subdivisions) * xO);
-                                    int mix = zone.GetMix(x, y);
-                                    int baseT = zone.GetBase(x, y);
-                                    int nextT = zone.GetNext(x, y);
-                                    int var = zone.GetVariant(x, y);
-                                    Bitmap tileImage = renderTexture(width, mix, baseT, nextT, var);
-                                    g.DrawImage(tileImage, xI * width, ((64 / subdivisions) - yI - 1) * width);
-                                    tileImage.Dispose();
+                                    int y = yI + ((64 / subdivisions) * yO);
+                                    for (int xI = 0; xI < (64 / subdivisions); xI++)
+                                    {
+                                        int x = xI + ((64 / subdivisions) * xO);
+                                        int mix = zone.GetMix(x, y);
+                                        int baseT = zone.GetBase(x, y);
+                                        int nextT = zone.GetNext(x, y);
+                                        int var = zone.GetVariant(x, y);
+                                        Bitmap tileImage = renderTexture(width, mix, baseT, nextT, var);
+                                        g.DrawImage(tileImage, xI * width, ((64 / subdivisions) - yI - 1) * width);
+                                        tileImage.Dispose();
+                                    }
                                 }
+                                g.Dispose();
+                                //string filename = openFileDialog1.FileName;
+                                string filename = filenameIn;
+                                filename = Path.GetFileNameWithoutExtension(filename);
+                                //saveFileDialog1.FileName = filename + "_" + zoneNum + "_" + subDiv + ".png";
+                                //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                                //{
+                                //    bmp.Save(saveFileDialog1.FileName);
+                                //}
+                                //bmp.Save(Path.GetDirectoryName(openFileDialog1.FileName) + Path.DirectorySeparatorChar + filename + "_" + zoneNum + "_" + subDiv + ".png", ImageFormat.Png);
+                                bmp.Save(Path.GetDirectoryName(filenameIn) + Path.DirectorySeparatorChar + filename + "_" + zoneNum + "_" + subDiv + ".png", ImageFormat.Png);
+                                bmp.Dispose();
+                                subDiv++;
                             }
-                            g.Dispose();
-                            string filename = openFileDialog1.FileName;
-                            filename = Path.GetFileNameWithoutExtension(filename);
-                            //saveFileDialog1.FileName = filename + "_" + zoneNum + "_" + subDiv + ".png";
-                            //if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                            //{
-                            //    bmp.Save(saveFileDialog1.FileName);
-                            //}
-                            bmp.Save(Path.GetDirectoryName(openFileDialog1.FileName) + Path.DirectorySeparatorChar + filename + "_" + zoneNum + "_" + subDiv + ".png", ImageFormat.Png);
-                            bmp.Dispose();
-                            subDiv++;
                         }
+                        zoneNum++;
                     }
-                    zoneNum++;
                 }
             }
         }
@@ -259,10 +265,10 @@ namespace BZ1_MAT_Render
                     g.DrawLine(whitePen, 0, width, width, 0);
                 }
 
-                g.FillEllipse(redBrush, (int)((width / 32.0) * 4), (int)((width / 32.0) * 26), 6, 6);
+                if (width >= 32) g.FillEllipse(redBrush, (int)((width / 32.0) * 4), (int)((width / 32.0) * 26), 6, 6);
             }
 
-            g.DrawString("" + ("ABCD"[var]), new Font("Arial", 16), redBrush, (int)((width / 32.0) * 8) - 2, (int)((width / 32.0) * 8) - 2);
+            if(width >= 32) g.DrawString("" + ("ABCD"[var]), new Font("Arial", 16), redBrush, (int)((width / 32.0) * 8) - 2, (int)((width / 32.0) * 8) - 2);
 
             switch (mix)
             {

@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BZ1_LGT-Export", "BZ1_LGT-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BZ1_MAT-Render", "BZ1_MAT-Render\BZ1_MAT-Render.csproj", "{075D4AF8-0BB3-4C11-B0FF-BC847F720181}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAT2JSON", "MAT2JSON\MAT2JSON.csproj", "{DB245838-8C44-4AEC-A189-FAF1F1F3A590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRN_Dump", "TRN_Dump\TRN_Dump.csproj", "{45DEC27C-0285-4816-9819-83AA5F90CECF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,6 +23,14 @@ Global
 		{075D4AF8-0BB3-4C11-B0FF-BC847F720181}.Debug|x86.Build.0 = Debug|x86
 		{075D4AF8-0BB3-4C11-B0FF-BC847F720181}.Release|x86.ActiveCfg = Release|x86
 		{075D4AF8-0BB3-4C11-B0FF-BC847F720181}.Release|x86.Build.0 = Release|x86
+		{DB245838-8C44-4AEC-A189-FAF1F1F3A590}.Debug|x86.ActiveCfg = Debug|x86
+		{DB245838-8C44-4AEC-A189-FAF1F1F3A590}.Debug|x86.Build.0 = Debug|x86
+		{DB245838-8C44-4AEC-A189-FAF1F1F3A590}.Release|x86.ActiveCfg = Release|x86
+		{DB245838-8C44-4AEC-A189-FAF1F1F3A590}.Release|x86.Build.0 = Release|x86
+		{45DEC27C-0285-4816-9819-83AA5F90CECF}.Debug|x86.ActiveCfg = Debug|x86
+		{45DEC27C-0285-4816-9819-83AA5F90CECF}.Debug|x86.Build.0 = Debug|x86
+		{45DEC27C-0285-4816-9819-83AA5F90CECF}.Release|x86.ActiveCfg = Release|x86
+		{45DEC27C-0285-4816-9819-83AA5F90CECF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
